@@ -44,4 +44,10 @@ jobs:
         run: |
           echo db name ${{ env.DATABSE_NAME }}
           echo bla db ${{ env.BLA }}
+      - name: Run ssh comand remote EC2
+        run: |
+          chmod 400 site_chave.pem
+          ls -all
+          ssh -i "site_chave.pem" ubuntu@ec2-18-156-78-72.eu-central-1.compute.amazonaws.com -t "cd /var/www/html/rl; "
+          scp -i "site_chave.pem" D:\GithubRepos\Curso\database-rl/index.html ubuntu@ec2-18-156-78-72.eu-central-1.compute.amazonaws.com:/var/www/html/rl/index.html
           
